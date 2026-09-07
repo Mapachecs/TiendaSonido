@@ -1,0 +1,20 @@
+/* Estilos para homogeneizar las tarjetas de productos */
+
+.card-img-top {
+  height: 200px;         /* Altura fija para todas las imágenes */
+  object-fit: cover;     /* Recorta la imagen proporcionalmente sin deformarla */
+}
+
+.card {
+  transition: transform 0.2s ease-in-out, shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+.badge-categoria {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}

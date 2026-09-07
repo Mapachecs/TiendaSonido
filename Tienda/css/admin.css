@@ -1,0 +1,22 @@
+/* Estilos para el Panel de Administración */
+
+body {
+  background-color: #f4f6f9;
+}
+
+.table th {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.table td {
+  font-size: 0.9rem;
+}
+
+.nav-tabs .nav-link {
+  color: #495057;
+}
+
+.nav-tabs .nav-link.active {
+  border-top: 3px solid #0d6efd;
+}

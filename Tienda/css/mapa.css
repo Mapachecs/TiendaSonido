@@ -1,0 +1,17 @@
+/* Altura del mapa en computadores */
+#mapa {
+  height: 520px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Ajuste de altura para pantallas pequeñas / móviles (>= 360px) */
+@media (max-width: 768px) {
+  #mapa {
+    height: 380px;
+  }
+}
+
+.list-group-item-action {
+  cursor: pointer;
+}
