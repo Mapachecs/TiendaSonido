@@ -138,11 +138,40 @@ function eliminarDelCarrito(index) {
   actualizarCarritoUI();
 }
 
+// 6.1. Finalizar Compra y vaciar el carrito
+function finalizarCompra() {
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío. Agrega productos antes de comprar.");
+    return;
+  }
+
+  alert("¡Gracias por tu compra! Tu pedido ha sido procesado con éxito.");
+  
+  // Vaciar el arreglo del carrito
+  carrito = [];
+  
+  // Refrescar la vista del carrito
+  actualizarCarritoUI();
+
+  // Si tienes un Modal de Bootstrap para el carrito, lo podemos cerrar opcionalmente:
+  const modalElem = document.getElementById('modalCarrito');
+  if (modalElem) {
+    const modal = bootstrap.Modal.getInstance(modalElem);
+    if (modal) modal.hide();
+  }
+}
+
 // 7. Inicializar eventos al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
   verificarSesionCliente();
   renderizarProductos(productos);
   actualizarCarritoUI();
+
+  // Escuchar el botón de Finalizar Compra
+  const btnFinalizarCompra = document.getElementById("btnFinalizarCompra");
+  if (btnFinalizarCompra) {
+    btnFinalizarCompra.addEventListener("click", finalizarCompra);
+  }
 
   // Escuchar búsqueda dinámica
   const inputBuscar = document.getElementById("inputBuscar");
