@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sonido Vivo - Tienda de Instrumentos</title>
+  <title>Nosotros - Sonido Vivo</title>
 
   <!-- Bootstrap CSS & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <!-- CSS Propio -->
-  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/nosotros.css">
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
 
@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Catálogo</a>
+            <a class="nav-link" href="index.html">Catálogo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="nosotros.html">Nosotros</a>
@@ -56,59 +56,78 @@
     </div>
   </nav>
 
-  <!-- SECCIÓN PRINCIPAL / CATÁLOGO -->
+  <!-- ENCABEZADO DE LA PÁGINA -->
   <div class="container my-5">
-    <div class="text-center mb-4">
-      <h1 class="fw-bold">Catálogo de Instrumentos</h1>
-      <p class="text-muted">Encuentra los mejores equipos de audio e instrumentos musicales</p>
+    <div class="text-center mb-5">
+      <h1 class="fw-bold">Quiénes Somos</h1>
+      <p class="text-muted">Conoce la historia y pasión detrás de Sonido Vivo</p>
     </div>
 
-    <!-- Filtros y Búsqueda -->
-    <div class="row g-3 mb-4">
-      <div class="col-md-8">
-        <div class="input-group">
-          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-          <input type="text" class="form-control" id="inputBuscar" placeholder="Buscar por nombre de producto...">
+    <!-- SECCIÓN DE VIDEO INSTITUCIONAL -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/2PuFyjAs7JA?si=-xBZC-Ya6Sed5tKM" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen></iframe>
+          </div>
+        </div>
+        <p class="text-muted small text-center mt-2">Un recorrido por nuestra tienda y nuestra historia</p>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE TEXTO / HISTORIA -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-9">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-6">
+            <h3 class="fw-bold text-primary mb-3"><i class="bi bi-clock-history me-2"></i>Nuestra Historia</h3>
+            <p class="text-muted">
+              Sonido Vivo nació en Viña del Mar con una misión simple: acercar instrumentos y equipos de audio
+              de calidad a músicos de todos los niveles, desde quienes recién comienzan hasta profesionales
+              que buscan renovar su equipo.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="fw-bold text-primary mb-3"><i class="bi bi-heart-fill me-2"></i>Nuestro Compromiso</h3>
+            <p class="text-muted">
+              Seleccionamos cada producto pensando en la relación calidad-precio, y ofrecemos asesoría cercana
+              para que encuentres el instrumento que realmente se ajusta a lo que necesitas tocar y crear.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE VALORES -->
+    <div class="row justify-content-center text-center g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm py-4">
+          <i class="bi bi-award-fill text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Calidad Garantizada</h5>
+          <p class="text-muted small px-3 mb-0">Trabajamos solo con marcas reconocidas y probadas por músicos.</p>
         </div>
       </div>
       <div class="col-md-4">
-        <select class="form-select" id="selectCategoria">
-          <option value="todas">Todas las categorías</option>
-          <option value="Guitarras">Guitarras</option>
-          <option value="Teclados">Teclados</option>
-          <option value="Baterías">Baterías</option>
-          <option value="Accesorios">Accesorios</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Contenedor de Productos -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 align-items-start" id="contenedorProductos">
-      <!-- Cargado dinámicamente con JS -->
-    </div>
-  </div>
-
-  <!-- OFFCANVAS CARRITO DE COMPRAS -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito">
-    <div class="offcanvas-header bg-dark text-white">
-      <h5 class="offcanvas-title"><i class="bi bi-cart-check me-2"></i>Tu Carrito</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body d-flex flex-column">
-      <ul class="list-group list-group-flush mb-3" id="listaCarrito">
-        <!-- Cargado dinámicamente con JS -->
-      </ul>
-      <div class="mt-auto border-top pt-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 fs-5 fw-bold">
-          <span>Total:</span>
-          <span class="text-primary" id="totalCarrito">$0</span>
+        <div class="card h-100 border-0 shadow-sm py-4">
+          <i class="bi bi-people-fill text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Cercanía con el Cliente</h5>
+          <p class="text-muted small px-3 mb-0">Asesoría personalizada antes, durante y después de tu compra.</p>
         </div>
-        <button class="btn btn-success w-100 py-2 mb-2" id="btnFinalizarCompra" data-bs-dismiss="offcanvas">
-          Proceder al Pago
-        </button>
-        <button class="btn btn-danger w-100 btn-sm" id="btnVaciarCarrito">
-          <i class="bi bi-trash3 me-1"></i>Vaciar carrito
-        </button> 
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm py-4">
+          <i class="bi bi-geo-alt-fill text-primary fs-1 mb-3"></i>
+          <h5 class="fw-bold">Presencia Local</h5>
+          <p class="text-muted small px-3 mb-0">Tienda física en Viña del Mar y puntos de retiro cercanos.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -117,7 +136,7 @@
 <footer class="bg-dark text-white pt-5 pb-4 mt-auto border-top border-secondary">
   <div class="container text-center text-md-start">
     <div class="row text-center text-md-start">
-      
+
       <!-- Columna 1: Info Marca -->
       <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 fw-bold text-primary">
@@ -133,6 +152,7 @@
         <h6 class="text-uppercase mb-4 fw-bold text-light">Navegación</h6>
         <p class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link">Catálogo</a></p>
         <p class="mb-2"><a href="mapa.html" class="text-white-50 text-decoration-none hover-link">Puntos de Retiro</a></p>
+        <p class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link">Nosotros</a></p>
         <p class="mb-2"><a href="login.html" class="text-white-50 text-decoration-none hover-link">Mi Cuenta</a></p>
       </div>
 

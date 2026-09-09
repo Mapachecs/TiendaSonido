@@ -139,6 +139,13 @@ function eliminarDelCarrito(id) {
   actualizarCarritoUI();
 }
 
+function vaciarCarrito() {
+  if (carrito.length === 0) return;
+  if (!confirm("¿Seguro que quieres vaciar el carrito?")) return;
+  carrito = [];
+  actualizarCarritoUI();
+}
+
 // 6. Finalizar Compra: Requiere sesión activa, descuenta stock y registra pedido en el Admin
 function finalizarCompra() {
   // VALIDACIÓN DE SESIÓN: Si no hay cuenta iniciada, bloquea y redirige
@@ -207,4 +214,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("inputBuscar")?.addEventListener("input", aplicarFiltros);
   document.getElementById("selectCategoria")?.addEventListener("change", aplicarFiltros);
+  document.getElementById("btnVaciarCarrito")?.addEventListener("click", vaciarCarrito);
 });
