@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarStock();
   cargarUsuarios();
   escucharFormularioProducto();
+  escucharFormularioUsuario();
 });
 
 // Control de sesión básico y restricción de roles
@@ -105,6 +106,59 @@ function cambiarRolUsuario(index, nuevoRol) {
   localStorage.setItem("usuarios_sonidovivo", JSON.stringify(usuarios));
 
   cargarUsuarios();
+}
+
+// Escuchar evento para crear usuario nuevo
+function escucharFormularioUsuario() {
+  const form = document.getElementById("formNuevoUsuario");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("userNombre").value.trim();
+    const email = document.getElementById("userCorreo").value.trim().toLowerCase();
+    const pass = document.getElementById("userPass").value.trim();
+    const rol = document.getElementById("userRol").value;
+
+    // Obtener usuarios asegurando la misma clave 'usuarios_sonidovivo'
+    const guardados = localStorage.getItem("usuarios_sonidovivo");
+    let usuarios = guardados ? JSON.parse(guardados) : [];
+
+    // Validar si el correo ya existe
+    if (usuarios.some(u => (u.email || u.correo)?.toLowerCase() === email)) {
+      alert("Este correo ya se encuentra registrado.");
+      return;
+    }
+
+    const ultimoId = usuarios.length > 0 
+      ? Math.max(...usuarios.map(u => Number(u.id) || 0)) 
+      : 0;
+
+    // Guardar con la clave "email" para mantener consistencia con login.js
+    const nuevoUsuario = {
+      id: ultimoId + 1,
+      nombre,
+      email,
+      pass,
+      rol
+    };
+
+    usuarios.push(nuevoUsuario);
+    localStorage.setItem("usuarios_sonidovivo", JSON.stringify(usuarios));
+
+    // Cerrar modal de Bootstrap
+    const modalEl = document.getElementById("modalNuevoUsuario");
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    if (modalInstance) modalInstance.hide();
+
+    form.reset();
+
+    // Actualizar la vista/tabla si la función existe
+    if (typeof cargarUsuarios === "function") {
+      cargarUsuarios();
+    }
+  });
 }
 
 // 2. Cargar Pedidos
