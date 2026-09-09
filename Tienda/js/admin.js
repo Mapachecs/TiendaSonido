@@ -52,7 +52,7 @@ function cargarUsuarios() {
   const guardados = localStorage.getItem("usuarios_sonidovivo");
 
   let usuarios = guardados ? JSON.parse(guardados) : [
-    { id: 1, nombre: "Dueño Administrador", correo: "admin@sonidovivo.cl", rol: "Administrador" },
+    { id: 1, nombre: "Administrador", correo: "admin@sonidovivo.cl", rol: "Administrador" },
     { id: 2, nombre: "Vendedor Tienda", correo: "vendedor@sonidovivo.cl", rol: "Vendedor" },
     { id: 3, nombre: "Cliente Pruebas", correo: "cliente@gmail.com", rol: "Cliente" }
   ];

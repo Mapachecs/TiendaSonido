@@ -1,0 +1,24 @@
+/* Ajustes suaves para las tarjetas y botones de la página de servicios */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+}
+
+/* Efecto de elevación al pasar el ratón por la tarjeta del formulario */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enlaces del Footer */
+footer a.text-white-50:hover {
+  color: #fff !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Estilo para los campos del formulario al hacer foco */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}

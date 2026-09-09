@@ -1,6 +1,6 @@
 // 1. Usuarios obligatorios por defecto para pruebas de roles
 const usuariosPorDefecto = [
-  { nombre: "Dueño Administrador", email: "admin@sonidovivo.cl", pass: "123", rol: "Administrador" },
+  { nombre: "Administrador", email: "admin@sonidovivo.cl", pass: "123", rol: "Administrador" },
   { nombre: "Vendedor Tienda", email: "vendedor@sonidovivo.cl", pass: "123", rol: "Vendedor" },
   { nombre: "Cliente Pruebas", email: "cliente@correo.com", pass: "123", rol: "Cliente" }
 ];

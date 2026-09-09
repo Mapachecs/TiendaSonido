@@ -117,18 +117,23 @@ function actualizarCarritoUI() {
   }, {});
 
   Object.values(agrupados).forEach(p => {
-    total += p.precio * p.cant;
-    listaHTML.innerHTML += `
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h6 class="my-0 fs-6">${p.nombre} (x${p.cant})</h6>
-          <small class="text-muted">$${(p.precio * p.cant).toLocaleString('es-CL')}</small>
-        </div>
+  total += p.precio * p.cant;
+  listaHTML.innerHTML += `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <h6 class="my-0 fs-6">${p.nombre} (x${p.cant})</h6>
+        <small class="text-muted">$${(p.precio * p.cant).toLocaleString('es-CL')}</small>
+      </div>
+      <div class="d-flex align-items-center gap-1">
+        <button class="btn btn-sm btn-outline-success border-0" onclick="agregarAlCarrito(${p.id})">
+          <i class="bi bi-plus-lg"></i>
+        </button>
         <button class="btn btn-sm btn-outline-danger border-0" onclick="eliminarDelCarrito(${p.id})">
           <i class="bi bi-trash-fill"></i>
         </button>
-      </li>`;
-  });
+      </div>
+    </li>`;
+});
 
   totalSpan.innerText = `$${total.toLocaleString('es-CL')}`;
 }
@@ -136,6 +141,12 @@ function actualizarCarritoUI() {
 function eliminarDelCarrito(id) {
   const idx = carrito.findIndex(p => p.id === id);
   if (idx !== -1) carrito.splice(idx, 1);
+  actualizarCarritoUI();
+}
+
+function aumentarDelCarrito(id) {
+  const itemExistente = carrito.find(p => p.id === id);
+  itemExistente.cantidad = (itemExistente.cantidad || 1) + 1;
   actualizarCarritoUI();
 }
 
