@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,14 @@
   <!-- CSS Propio -->
   <link rel="stylesheet" href="admin.css">
 </head>
+
 <body class="bg-light d-flex flex-column min-vh-100">
 
   <!-- BARRA DE NAVEGACIÓN ADMIN -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid px-4">
       <a class="navbar-brand fw-bold" href="#"><i class="bi bi-gear-wide-connected me-2"></i>Sonido Vivo - Panel</a>
-      
+
       <div class="d-flex align-items-center gap-3 ms-auto">
         <span class="navbar-text text-white small" id="nombreUsuarioSesion">Cargando...</span>
         <button class="btn btn-outline-danger btn-sm" id="btnCerrarSesion">
@@ -34,17 +36,20 @@
       <div class="col-12 mb-4">
         <ul class="nav nav-tabs" id="adminTabs" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active fw-bold" id="pedidos-tab" data-bs-toggle="tab" data-bs-target="#pedidos-pane" type="button" role="tab">
+            <button class="nav-link active fw-bold" id="pedidos-tab" data-bs-toggle="tab" data-bs-target="#pedidos-pane"
+              type="button" role="tab">
               <i class="bi bi-receipt me-1"></i>Gestión de Pedidos
             </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link fw-bold" id="stock-tab" data-bs-toggle="tab" data-bs-target="#stock-pane" type="button" role="tab">
+            <button class="nav-link fw-bold" id="stock-tab" data-bs-toggle="tab" data-bs-target="#stock-pane"
+              type="button" role="tab">
               <i class="bi bi-box-seam me-1"></i>Control de Inventario
             </button>
           </li>
           <li class="nav-item" role="presentation" id="liUsuariosTab">
-            <button class="nav-link fw-bold text-danger" id="usuarios-tab" data-bs-toggle="tab" data-bs-target="#usuarios-pane" type="button" role="tab">
+            <button class="nav-link fw-bold text-danger" id="usuarios-tab" data-bs-toggle="tab"
+              data-bs-target="#usuarios-pane" type="button" role="tab">
               <i class="bi bi-people-fill me-1"></i>Usuarios (Solo Admin)
             </button>
           </li>
@@ -117,42 +122,45 @@
             <div class="card border-0 shadow-sm border-top border-danger border-3">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h5 class="card-title fw-bold m-0 text-danger"><i class="bi bi-shield-lock me-2"></i>Gestión de Usuarios del Sistema</h5>             
+                  <h5 class="card-title fw-bold m-0 text-danger"><i class="bi bi-shield-lock me-2"></i>Gestión de
+                    Usuarios del Sistema</h5>
                   <!-- BOTÓN VINCULADO AL MODAL CREAR USUARIO -->
                   <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevoUsuario">
                     <i class="bi bi-plus-circle me-1"></i>Nuevo Usuario
                   </button>
                 </div>
-                  <table class="table table-hover align-middle">
-                    <thead class="table-secondary">
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
-                        <th>Cambiar Rol</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tablaUsuarios">
-                      <!-- Cargado dinámicamente con JS -->
-                    </tbody>
-                  </table>
-                </div>
+                <table class="table table-hover align-middle">
+                  <thead class="table-secondary">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Correo</th>
+                      <th>Rol</th>
+                      <th>Cambiar Rol</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tablaUsuarios">
+                    <!-- Cargado dinámicamente con JS -->
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
+
+  </div>
   </div>
 
   <!-- MODAL PARA AGREGAR NUEVO Usuario -->
-  <div class="modal fade" id="modalNuevoUsuario" tabindex="-1" aria-labelledby="modalNuevoUsuarioLabel" aria-hidden="true">
+  <div class="modal fade" id="modalNuevoUsuario" tabindex="-1" aria-labelledby="modalNuevoUsuarioLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="modalNuevoUsuarioLabel"><i class="bi bi-person-plus me-2"></i>Agregar Nuevo Usuario</h5>
+          <h5 class="modal-title" id="modalNuevoUsuarioLabel"><i class="bi bi-person-plus me-2"></i>Agregar Nuevo
+            Usuario</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form id="formNuevoUsuario">
@@ -189,11 +197,13 @@
 
 
   <!-- MODAL PARA AGREGAR NUEVO PRODUCTO -->
-  <div class="modal fade" id="modalNuevoProducto" tabindex="-1" aria-labelledby="modalNuevoProductoLabel" aria-hidden="true">
+  <div class="modal fade" id="modalNuevoProducto" tabindex="-1" aria-labelledby="modalNuevoProductoLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="modalNuevoProductoLabel"><i class="bi bi-box-seam me-2"></i>Agregar Nuevo Producto</h5>
+          <h5 class="modal-title" id="modalNuevoProductoLabel"><i class="bi bi-box-seam me-2"></i>Agregar Nuevo Producto
+          </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form id="formNuevoProducto">
@@ -240,14 +250,15 @@
   <footer class="bg-dark text-white pt-5 pb-4 mt-auto border-top border-secondary">
     <div class="container text-center text-md-start">
       <div class="row text-center text-md-start">
-        
+
         <!-- Columna 1: Info Marca -->
         <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
           <h5 class="text-uppercase mb-4 fw-bold text-primary">
             <i class="bi bi-music-note-list me-2"></i>Sonido Vivo
           </h5>
           <p class="text-white-50 small pe-lg-4">
-            Tu tienda especializada en instrumentos musicales, equipos de audio e iluminación profesional. Calidad y servicio garantizado.
+            Tu tienda especializada en instrumentos musicales, equipos de audio e iluminación profesional. Calidad y
+            servicio garantizado.
           </p>
         </div>
 
@@ -255,16 +266,19 @@
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 fw-bold text-light">Navegación</h6>
           <p class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link">Catálogo</a></p>
+          <p class="mb-2"><a href="novedades.html" class="text-white-50 text-decoration-none hover-link">Novedades</a></p>
           <p class="mb-2"><a href="mapa.html" class="text-white-50 text-decoration-none hover-link">Puntos de Retiro</a></p>
-          <p class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link">Sobre Nosotros</a></p>
+          <p class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link">Nosotros</a></p>
           <p class="mb-2"><a href="servicios.html" class="text-white-50 text-decoration-none">Servicios</a></p>
         </div>
 
         <!-- Columna 3: Contacto -->
         <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 fw-bold text-light">Contacto</h6>
-          <p class="text-white-50 small mb-2"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Av. Libertad 450, Viña del Mar</p>
-          <p class="text-white-50 small mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i>contacto@sonidovivo.cl</p>
+          <p class="text-white-50 small mb-2"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Av. Libertad 450, Viña
+            del Mar</p>
+          <p class="text-white-50 small mb-2"><i
+              class="bi bi-envelope-fill me-2 text-primary"></i>contacto@sonidovivo.cl</p>
           <p class="text-white-50 small mb-2"><i class="bi bi-telephone-fill me-2 text-primary"></i>+56 9 1234 5678</p>
         </div>
 
@@ -289,4 +303,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/admin.js"></script>
 </body>
+
 </html>
