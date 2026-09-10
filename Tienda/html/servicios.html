@@ -81,20 +81,20 @@
             <!-- Campo Nombre -->
             <div class="mb-3">
               <label for="nombreContacto" class="form-label fw-semibold">Nombre Completo</label>
-              <input type="text" class="form-control" id="nombreContacto" placeholder="Ingresa tu nombre" required>
+              <input type="text" class="form-control" id="nombreContacto" placeholder="Ingresa tu nombre" maxlength="100" required>
             </div>
 
             <!-- Campo Correo Electrónico -->
             <div class="mb-3">
               <label for="emailContacto" class="form-label fw-semibold">Correo Electrónico</label>
-              <input type="email" class="form-control" id="emailContacto" placeholder="nombre@correo.com" required>
+              <input type="email" class="form-control" id="emailContacto" placeholder="nombre@correo.com" maxlength="100" required>
             </div>
 
             <!-- Campo Comentario o Mensaje -->
             <div class="mb-4">
               <label for="mensajeContacto" class="form-label fw-semibold">Comentario o Mensaje</label>
               <textarea class="form-control" id="mensajeContacto" rows="4"
-                placeholder="Escribe tu consulta o mensaje aquí..." required></textarea>
+                placeholder="Escribe tu consulta o mensaje aquí..." maxlength="500" required></textarea>
             </div>
 
             <!-- Alerta de éxito al enviar -->

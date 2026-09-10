@@ -68,20 +68,62 @@
               <!-- 2. FORMULARIO DE REGISTRO (Clientes) -->
               <div class="tab-pane fade" id="register-pane" role="tabpanel">
                 <form id="formRegister">
+                  
+                  <!-- RUN / RUT -->
                   <div class="mb-3">
-                    <label for="regNombre" class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-control" id="regNombre" placeholder="Juan Pérez" required>
+                    <label for="regRun" class="form-label">RUN / RUT <small class="text-muted">(Sin puntos ni guión)</small></label>
+                    <input type="text" class="form-control" id="regRun" placeholder="Ej: 19123456K" required>
                   </div>
+
+                  <!-- Nombres y Apellidos Separados -->
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="regNombre" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="regNombre" placeholder="Juan" maxlength="50" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="regApellidos" class="form-label">Apellidos</label>
+                      <input type="text" class="form-control" id="regApellidos" placeholder="Pérez González" maxlength="100" required>
+                    </div>
+                  </div>
+
+                  <!-- Correo Electrónico -->
                   <div class="mb-3">
                     <label for="regEmail" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="regEmail" placeholder="nombre@correo.com" required>
+                    <input type="email" class="form-control" id="regEmail" placeholder="nombre@correo.com" maxlength="100" required>
                   </div>
+
+                  <!-- Región y Comuna Anidados -->
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="regRegion" class="form-label">Región</label>
+                      <select class="form-select" id="regRegion" required>
+                        <option value="">Seleccione Región...</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="regComuna" class="form-label">Comuna</label>
+                      <select class="form-select" id="regComuna" required disabled>
+                        <option value="">Seleccione Comuna...</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Dirección -->
+                  <div class="mb-3">
+                    <label for="regDireccion" class="form-label">Dirección de Residencia</label>
+                    <input type="text" class="form-control" id="regDireccion" placeholder="Av. Libertad 1234, Dpto 502" required>
+                  </div>
+
+                  <!-- Contraseña -->
                   <div class="mb-3">
                     <label for="regPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="regPassword" placeholder="Mínimo 3 caracteres" minlength="3" required>
+                    <input type="password" class="form-control" id="regPassword" placeholder="Mínimo 4 caracteres max 10" minlength="4" maxlength="10" required>
                   </div>
+
+                  <div id="regError" class="alert alert-danger d-none py-2 fs-6"></div>
                   <div id="regSuccess" class="alert alert-success d-none py-2 fs-6"></div>
-                  <button type="submit" class="btn btn-success w-100 py-2">Crear Cuenta Cliente</button>
+                  <button type="submit" class="btn btn-success w-100 py-2 fw-bold">Crear Cuenta Cliente</button>
                 </form>
               </div>
 
@@ -96,59 +138,58 @@
 
       </div>
     </div>
-  </main>  
+  </main>   
 
   <!-- FOOTER GLOBAL -->
-<footer class="bg-dark text-white pt-5 pb-4 mt-auto border-top border-secondary">
-  <div class="container text-center text-md-start">
-    <div class="row text-center text-md-start">
-      
-      <!-- Columna 1: Info Marca -->
-      <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 fw-bold text-primary">
-          <i class="bi bi-music-note-list me-2"></i>Sonido Vivo
-        </h5>
-        <p class="text-white-50 small pe-lg-4">
-          Tu tienda especializada en instrumentos musicales, equipos de audio e iluminación profesional. Calidad y servicio garantizado.
-        </p>
+  <footer class="bg-dark text-white pt-5 pb-4 mt-auto border-top border-secondary">
+    <div class="container text-center text-md-start">
+      <div class="row text-center text-md-start">
+        
+        <!-- Columna 1: Info Marca -->
+        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-primary">
+            <i class="bi bi-music-note-list me-2"></i>Sonido Vivo
+          </h5>
+          <p class="text-white-50 small pe-lg-4">
+            Tu tienda especializada en instrumentos musicales, equipos de audio e iluminación profesional. Calidad y servicio garantizado.
+          </p>
+        </div>
+
+        <!-- Columna 2: Enlaces Rápidos -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 fw-bold text-light">Navegación</h6>
+          <p class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link">Catálogo</a></p>
+          <p class="mb-2"><a href="novedades.html" class="text-white-50 text-decoration-none hover-link">Novedades</a></p>
+          <p class="mb-2"><a href="mapa.html" class="text-white-50 text-decoration-none hover-link">Puntos de Retiro</a></p>
+          <p class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link">Sobre Nosotros</a></p>
+          <p class="mb-2"><a href="servicios.html" class="text-white-50 text-decoration-none">Servicios</a></p>
+        </div>
+
+        <!-- Columna 3: Contacto -->
+        <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 fw-bold text-light">Contacto</h6>
+          <p class="text-white-50 small mb-2"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Av. Libertad 450, Viña del Mar</p>
+          <p class="text-white-50 small mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i>contacto@sonidovivo.cl</p>
+          <p class="text-white-50 small mb-2"><i class="bi bi-telephone-fill me-2 text-primary"></i>+56 9 1234 5678</p>
+        </div>
+
       </div>
 
-      <!-- Columna 2: Enlaces Rápidos -->
-      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 fw-bold text-light">Navegación</h6>
-        <p class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none hover-link">Catálogo</a></p>
-        <p class="mb-2"><a href="novedades.html" class="text-white-50 text-decoration-none hover-link">Novedades</a></p>
-        <p class="mb-2"><a href="mapa.html" class="text-white-50 text-decoration-none hover-link">Puntos de Retiro</a></p>
-        <p class="mb-2"><a href="nosotros.html" class="text-white-50 text-decoration-none hover-link">Sobre Nosotros</a></p>
-        <p class="mb-2"><a href="servicios.html" class="text-white-50 text-decoration-none">Servicios</a></p>
+      <hr class="mb-4 mt-4 text-secondary">
 
+      <!-- Copyright -->
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p class="text-white-50 small mb-0">
+            © 2026 <b class="text-light">Sonido Vivo SpA</b>. Todos los derechos reservados.
+          </p>
+        </div>
+        <div class="col-md-5 col-lg-4 text-center text-md-end">
+          <span class="badge bg-secondary opacity-75">Prototipo Frontend v1.0</span>
+        </div>
       </div>
-
-      <!-- Columna 3: Contacto -->
-      <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 fw-bold text-light">Contacto</h6>
-        <p class="text-white-50 small mb-2"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>Av. Libertad 450, Viña del Mar</p>
-        <p class="text-white-50 small mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i>contacto@sonidovivo.cl</p>
-        <p class="text-white-50 small mb-2"><i class="bi bi-telephone-fill me-2 text-primary"></i>+56 9 1234 5678</p>
-      </div>
-
     </div>
-
-    <hr class="mb-4 mt-4 text-secondary">
-
-    <!-- Copyright -->
-    <div class="row align-items-center">
-      <div class="col-md-7 col-lg-8">
-        <p class="text-white-50 small mb-0">
-          © 2026 <b class="text-light">Sonido Vivo SpA</b>. Todos los derechos reservados.
-        </p>
-      </div>
-      <div class="col-md-5 col-lg-4 text-center text-md-end">
-        <span class="badge bg-secondary opacity-75">Prototipo Frontend v1.0</span>
-      </div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/login.js"></script>
