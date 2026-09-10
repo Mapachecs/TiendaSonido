@@ -14,8 +14,18 @@ function obtenerProductos() {
   return JSON.parse(guardados);
 }
 
+// 1.1 Obtener y guardar el carrito desde/hacia localStorage
+function obtenerCarrito() {
+  const guardado = localStorage.getItem("carrito_sonidovivo");
+  return guardado ? JSON.parse(guardado) : [];
+}
+
+function guardarCarrito() {
+  localStorage.setItem("carrito_sonidovivo", JSON.stringify(carrito));
+}
+
 let productos = obtenerProductos();
-let carrito = [];
+let carrito = obtenerCarrito(); // Ahora persiste entre páginas y recargas
 
 // 2. Control de sesión del cliente
 function verificarSesionCliente() {
@@ -43,7 +53,7 @@ function cerrarSesion() {
 function renderizarProductos(lista) {
   const contenedor = document.getElementById("contenedorProductos");
   if (!contenedor) return;
-  
+
   if (lista.length === 0) {
     contenedor.innerHTML = `<p class="text-center text-muted col-12 py-5">No se encontraron productos.</p>`;
     return;
@@ -58,7 +68,7 @@ function renderizarProductos(lista) {
           <div class="card-body d-flex flex-column">
             <span class="badge bg-secondary mb-2 align-self-start">${prod.categoria}</span>
             <h5 class="card-title h6 fw-bold">${prod.nombre}</h5>
-            
+
             <div class="mt-auto">
               <div class="mb-2">
                 <span class="badge ${disponible ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-danger-subtle text-danger border border-danger-subtle'}">
@@ -66,7 +76,7 @@ function renderizarProductos(lista) {
                 </span>
               </div>
               <p class="card-text text-primary fw-bold fs-5 mb-2">$${prod.precio.toLocaleString('es-CL')}</p>
-              <button class="btn ${disponible ? 'btn-primary' : 'btn-secondary'} w-100 btn-sm" 
+              <button class="btn ${disponible ? 'btn-primary' : 'btn-secondary'} w-100 btn-sm"
                       onclick="agregarAlCarrito(${prod.id})" ${!disponible ? 'disabled' : ''}>
                 <i class="bi bi-cart-plus me-1"></i>${disponible ? 'Agregar al carrito' : 'Agotado'}
               </button>
@@ -89,6 +99,7 @@ function agregarAlCarrito(id) {
   }
 
   carrito.push(prod);
+  guardarCarrito();
   actualizarCarritoUI();
 }
 
@@ -117,23 +128,23 @@ function actualizarCarritoUI() {
   }, {});
 
   Object.values(agrupados).forEach(p => {
-  total += p.precio * p.cant;
-  listaHTML.innerHTML += `
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <h6 class="my-0 fs-6">${p.nombre} (x${p.cant})</h6>
-        <small class="text-muted">$${(p.precio * p.cant).toLocaleString('es-CL')}</small>
-      </div>
-      <div class="d-flex align-items-center gap-1">
-        <button class="btn btn-sm btn-outline-success border-0" onclick="agregarAlCarrito(${p.id})">
-          <i class="bi bi-plus-lg"></i>
-        </button>
-        <button class="btn btn-sm btn-outline-danger border-0" onclick="eliminarDelCarrito(${p.id})">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-      </div>
-    </li>`;
-});
+    total += p.precio * p.cant;
+    listaHTML.innerHTML += `
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <h6 class="my-0 fs-6">${p.nombre} (x${p.cant})</h6>
+          <small class="text-muted">$${(p.precio * p.cant).toLocaleString('es-CL')}</small>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <button class="btn btn-sm btn-outline-success border-0" onclick="agregarAlCarrito(${p.id})">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger border-0" onclick="eliminarDelCarrito(${p.id})">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </div>
+      </li>`;
+  });
 
   totalSpan.innerText = `$${total.toLocaleString('es-CL')}`;
 }
@@ -141,12 +152,7 @@ function actualizarCarritoUI() {
 function eliminarDelCarrito(id) {
   const idx = carrito.findIndex(p => p.id === id);
   if (idx !== -1) carrito.splice(idx, 1);
-  actualizarCarritoUI();
-}
-
-function aumentarDelCarrito(id) {
-  const itemExistente = carrito.find(p => p.id === id);
-  itemExistente.cantidad = (itemExistente.cantidad || 1) + 1;
+  guardarCarrito();
   actualizarCarritoUI();
 }
 
@@ -154,12 +160,12 @@ function vaciarCarrito() {
   if (carrito.length === 0) return;
   if (!confirm("¿Seguro que quieres vaciar el carrito?")) return;
   carrito = [];
+  guardarCarrito();
   actualizarCarritoUI();
 }
 
 // 6. Finalizar Compra: Requiere sesión activa, descuenta stock y registra pedido en el Admin
 function finalizarCompra() {
-  // VALIDACIÓN DE SESIÓN: Si no hay cuenta iniciada, bloquea y redirige
   const sesionRaw = localStorage.getItem("sesion_activa");
   if (!sesionRaw) {
     alert("Debes iniciar sesión para poder realizar una compra.");
@@ -171,14 +177,12 @@ function finalizarCompra() {
 
   const usuario = JSON.parse(sesionRaw);
 
-  // Descontar el stock en localStorage
   productos.forEach(prod => {
     const comprados = carrito.filter(item => item.id === prod.id).length;
     prod.stock -= comprados;
   });
   localStorage.setItem("productos_sonidovivo", JSON.stringify(productos));
 
-  // Registrar pedido para el panel Admin/Vendedor
   const pedidosGuardados = localStorage.getItem("pedidos_sonidovivo");
   let pedidos = pedidosGuardados ? JSON.parse(pedidosGuardados) : [];
   const totalPagar = carrito.reduce((acc, p) => acc + p.precio, 0);
@@ -194,6 +198,7 @@ function finalizarCompra() {
 
   alert(`¡Gracias por tu compra, ${usuario.nombre.split(' ')[0]}! Tu pedido ha sido procesado con éxito.`);
   carrito = [];
+  guardarCarrito();
   actualizarCarritoUI();
   renderizarProductos(productos);
 
@@ -208,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarCarritoUI();
 
   document.getElementById("btnFinalizarCompra")?.addEventListener("click", finalizarCompra);
+  document.getElementById("btnVaciarCarrito")?.addEventListener("click", vaciarCarrito);
 
   // Filtro unificado (búsqueda por texto y categoría)
   const aplicarFiltros = () => {
@@ -225,5 +231,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("inputBuscar")?.addEventListener("input", aplicarFiltros);
   document.getElementById("selectCategoria")?.addEventListener("change", aplicarFiltros);
-  document.getElementById("btnVaciarCarrito")?.addEventListener("click", vaciarCarrito);
 });
